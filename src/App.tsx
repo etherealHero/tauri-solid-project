@@ -1,6 +1,7 @@
 import { createSignal } from "solid-js";
 import logo from "./assets/logo.svg";
 import { invoke } from "@tauri-apps/api/core";
+import { Counter } from "./components/Counter";
 
 function App() {
   const [greetMsg, setGreetMsg] = createSignal("");
@@ -28,6 +29,8 @@ function App() {
       </div>
 
       <p>Click on the Tauri, Vite, and Solid logos to learn more.</p>
+
+      <Counter />
 
       <form
         class="join"
