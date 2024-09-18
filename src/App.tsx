@@ -1,7 +1,6 @@
 import { createSignal } from "solid-js";
 import logo from "./assets/logo.svg";
 import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
 
 function App() {
   const [greetMsg, setGreetMsg] = createSignal("");
@@ -13,36 +12,39 @@ function App() {
   }
 
   return (
-    <div class="container">
+    <div class="flex flex-col gap-5 h-screen items-center justify-center">
       <h1>Welcome to Tauri!</h1>
 
-      <div class="row">
+      <div class="flex">
         <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" class="logo vite" alt="Vite logo" />
+          <img src="/vite.svg" class="w-20" alt="Vite logo" />
         </a>
         <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" class="logo tauri" alt="Tauri logo" />
+          <img src="/tauri.svg" class="w-20" alt="Tauri logo" />
         </a>
         <a href="https://solidjs.com" target="_blank">
-          <img src={logo} class="logo solid" alt="Solid logo" />
+          <img src={logo} class="w-20" alt="Solid logo" />
         </a>
       </div>
 
       <p>Click on the Tauri, Vite, and Solid logos to learn more.</p>
 
       <form
-        class="row"
+        class="join"
         onSubmit={(e) => {
           e.preventDefault();
           greet();
         }}
       >
         <input
+          class="join-item input input-accent"
           id="greet-input"
           onChange={(e) => setName(e.currentTarget.value)}
           placeholder="Enter a name..."
         />
-        <button type="submit">Greet</button>
+        <button class="join-item btn btn-accent" type="submit">
+          Greet
+        </button>
       </form>
 
       <p>{greetMsg()}</p>
