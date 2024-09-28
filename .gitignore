@@ -1,6 +1,9 @@
 node_modules
 dist
 
+# routing
+src/router.ts
+
 # sign android
 src-tauri/gen/android/app/keystore.jks
 src-tauri/gen/android/keystore.properties
