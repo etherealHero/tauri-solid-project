@@ -1,6 +1,9 @@
 node_modules
 dist
 
+# lock file
+/*-lock.*
+
 # routing
 src/router.ts
 
