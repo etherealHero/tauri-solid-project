@@ -3,17 +3,11 @@ import logo from "../assets/logo.svg";
 import { invoke } from "@tauri-apps/api/core";
 import { Counter } from "../components/Counter";
 
-import { routes } from "@generouted/solid-router";
-import RoutesViewer from "../components/RoutesViewer";
+import { RoutesViewer } from "../components/RoutesViewer";
 
 export default function Home() {
   const [greetMsg, setGreetMsg] = createSignal("");
   const [name, setName] = createSignal("");
-
-  // const [menu, setMenu] = createSignal([]);
-  // createEffect(() => {
-  //   setMenu()
-  // })
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -24,7 +18,7 @@ export default function Home() {
     <div class="h-screen flex items-start justify-center gap-20 flex-wrap pt-20">
       <div>
         <h4 class="mb-5">Navigation</h4>
-        <RoutesViewer routes={routes} />
+        <RoutesViewer />
       </div>
 
       <div class="flex flex-col gap-5 justify-center">

@@ -1,5 +1,6 @@
 import { RouteDefinition } from "@solidjs/router";
-import { For, Match, Switch } from "solid-js";
+import { createSignal, For, Match, onMount, Show, Switch } from "solid-js";
+import { routes } from "@generouted/solid-router";
 
 type FlattenedRoute = {
   id: string;
@@ -56,10 +57,14 @@ function flattenRoutes(routes: RouteDefinitionWithId[], indent = 0): FlattenedRo
     });
 }
 
-export default function RoutesViewer(props: { routes: RouteDefinition[] }) {
+export function RoutesViewer() {
+  const [isShow, setIsShow] = createSignal<boolean>(false);
+
+  onMount(() => setTimeout(() => setIsShow(true), 100));
+
   return (
-    <>
-      <For each={flattenRoutes(props.routes)} fallback={<div>No items</div>}>
+    <Show when={isShow()} fallback={<div>Loading...</div>}>
+      <For each={flattenRoutes(routes)} fallback={<div>No items</div>}>
         {(item, index) => (
           <Switch>
             <Match when={item.isNode}>
@@ -74,6 +79,6 @@ export default function RoutesViewer(props: { routes: RouteDefinition[] }) {
           </Switch>
         )}
       </For>
-    </>
+    </Show>
   );
 }
