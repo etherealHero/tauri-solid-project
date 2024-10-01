@@ -1,17 +1,29 @@
-import { createSignal } from "solid-js";
+import { createSignal, onMount } from "solid-js";
 import logo from "../assets/logo.svg";
-import { invoke } from "@tauri-apps/api/core";
+import { invoke, isTauri } from "@tauri-apps/api/core";
 import { Counter } from "../components/Counter";
 
 import { RoutesViewer } from "../components/RoutesViewer";
+import { storage } from "../storage";
 
 export default function Home() {
   const [greetMsg, setGreetMsg] = createSignal("");
   const [name, setName] = createSignal("");
 
+  onMount(async () => {
+    const name = (await storage.get("name")) as string | undefined;
+    if (name) setGreetMsg(`Last name "${name}" loaded from storage`);
+  });
+
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name: name() }));
+    const invokeGreet = async (): Promise<string> =>
+      isTauri()
+        ? await invoke("greet", { name: name() })
+        : await new Promise((r) => r(`Hello ${name()}! You've been greeted from Web!`));
+
+    setGreetMsg(await invokeGreet());
+    storage.set("name", name());
   }
 
   return (

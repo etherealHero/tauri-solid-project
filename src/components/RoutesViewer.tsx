@@ -60,7 +60,7 @@ function flattenRoutes(routes: RouteDefinitionWithId[], indent = 0): FlattenedRo
 export function RoutesViewer() {
   const [isShow, setIsShow] = createSignal<boolean>(false);
 
-  onMount(() => setTimeout(() => setIsShow(true), 100));
+  onMount(() => setTimeout(() => setIsShow(true), import.meta.env.MODE === "development" ? 300 : 0));
 
   return (
     <Show when={isShow()} fallback={<div>Loading...</div>}>

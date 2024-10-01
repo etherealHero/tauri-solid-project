@@ -19,7 +19,10 @@
     "@solidjs/router": "^0.14.5",
     "@tauri-apps/api": ">=2.0.0-rc.0",
     "@tauri-apps/plugin-shell": ">=2.0.0-rc.0",
-    "solid-js": "^1.7.8"
+    "@tauri-apps/plugin-store": "2.0.0-rc.1",
+    "idb-keyval": "^6.2.1",
+    "solid-js": "^1.7.8",
+    "unstorage": "^1.12.0"
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.9",
